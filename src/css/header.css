@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
+header {  
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    padding: 1rem;
+    background : #2f5fd2;
+    font-weight: bold;
+    /* display: flex*/
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 30px;
+}
+
+
+.headerName{
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 30px;
+    font-weight:bold;
+    background: #2f5fd2;
+    border: 0;
+    outline: 0;
+    color: white;
+}
+
+.headerLogin{
+    font-family: 'Spoqa Han Sans', serif;
+    font-size: 15px;
+    font-weight:bold;
+    background: #2f5fd2;
+    color: #3B3B46;
+    border: 0;
+    outline: 0;
+    color: white;
+    float:right;
+}
+
+
+.headerRegister{
+    font-family: 'Spoqa Han Sans', serif;
+    font-size: 15px;
+    font-weight:bold;
+    background: #2f5fd2;
+    color: #3B3B46;
+    border: 0;
+    outline: 0;
+    color: white;
+    float:right;
+}
