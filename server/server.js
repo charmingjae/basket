@@ -2,10 +2,23 @@ const express = require("express");
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
-app.get("/", (req, res) => {
-  res.send(`Response Complate`);
+const db = require("./config/db");
+
+app.get("/api/host", (req, res) => {
+  res.send({ host: "root" });
+});
+
+app.get("/api/test", (req, res) => {
+  db.query("select * from test", (err, data) => {
+    if (!err) {
+      res.send(data);
+    } else {
+      console.log(err);
+      res.send(err);
+    }
+  });
 });
 
 app.listen(PORT, () => {

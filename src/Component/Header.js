@@ -11,16 +11,6 @@ import AuthRoute from "../Auth/AuthRoute";
 import LogoutButton from "../Login/LogoutButton";
 
 function Header() {
-  // 요기부터 State 테스트
-  // const [idState, setIdState] = useState({
-  //   id: null,
-  // });
-
-  // setIdState({
-  //   id: "test",
-  // });
-  // 요기까지
-
   // 민재 Writing
   // const [user, setUser] => 사용자가 로그인 Form에서 입력한 정보 저장
 
