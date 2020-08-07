@@ -23,6 +23,7 @@ function Header() {
 
   // 민재 Writing
   // const [user, setUser] => 사용자가 로그인 Form에서 입력한 정보 저장
+
   const [user, setUser] = useState(null);
   const authenticated = user != null;
 
