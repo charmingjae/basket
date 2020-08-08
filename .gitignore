@@ -24,6 +24,6 @@ yarn-error.log*
 
 *.class
 
-/server/config
+/server
 
 db.js
