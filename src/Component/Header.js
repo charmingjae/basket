@@ -1,5 +1,5 @@
 // import React from "react";
-import React, { useState, useEffect } from "react"; //잠시바꾼거
+import React, { useState, Component } from "react"; //잠시바꾼거
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Home from "../Main/index";
 import Login from "../Login/Login";
@@ -9,6 +9,7 @@ import "../css/header.css";
 import { signIn } from "../Auth/auth";
 import AuthRoute from "../Auth/AuthRoute";
 import LogoutButton from "../Login/LogoutButton";
+import axios from "axios";
 
 function Header() {
   // 민재 Writing
