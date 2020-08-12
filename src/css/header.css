@@ -19,6 +19,7 @@ header {
 
 .headerName{
     font-family: 'Nanum Myeongjo', serif;
+    padding-top: 0;
     font-size: 30px;
     font-weight:bold;
     background: #2f5fd2;
@@ -51,3 +52,6 @@ header {
     color: white;
     float:right;
 }
+
+/* 버거 메뉴  */
+

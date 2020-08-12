@@ -7,21 +7,25 @@ class Register extends Component {
     super(props);
     this.state = {
       name: "",
+      userid: "",
+      password: "",
     };
   }
 
   _addData = async (e) => {
     const { name } = this.state;
+    const { password } = this.state;
+    const { userid } = this.state;
     e.preventDefault();
 
     const res = await axios("/add/data", {
       method: "POST",
-      data: { data: name },
+      data: { dataUserId: userid, dataPassword: password, dataName: name },
       headers: new Headers(),
     });
 
     if (res.data) {
-      alert("데이터를 추가했습니다.");
+      alert("회원가입 완료.");
       return window.location.reload();
     }
   };
@@ -29,6 +33,15 @@ class Register extends Component {
   _nameUpdate(e) {
     this.setState({ name: e.target.value });
   }
+
+  _passwordUpdate(e) {
+    this.setState({ password: e.target.value });
+  }
+
+  _idUpdate(e) {
+    this.setState({ userid: e.target.value });
+  }
+
   render() {
     return (
       <div className="regContainer">
@@ -38,11 +51,19 @@ class Register extends Component {
             <input
               className="regInput"
               placeholder="UserID"
+              onChange={(e) => this._idUpdate(e)}
+            ></input>
+            <input
+              className="regInput"
+              placeholder="Password"
+              onChange={(e) => this._passwordUpdate(e)}
+            ></input>
+            <input
+              className="regInput"
+              placeholder="UserName"
               onChange={(e) => this._nameUpdate(e)}
             ></input>
-            {/* <input className="regInput" placeholder="Password"></input>
-          <input className="regInput" placeholder="UserName"></input> */}
-            <input type="submit" className="regBtn" value="Add"></input>
+            <input type="submit" className="regBtn" value="회원가입"></input>
           </form>
         </div>
       </div>

@@ -1,68 +1,87 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
+import Header from "../Component/Header";
+import Register from "../Register/Register";
+import Home from "../Main/index";
 import "../css/login.css";
+import axios from "axios";
 import { Redirect } from "react-router-dom";
+import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
-function Login({ authenticated, login, location }) {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: "",
+      password: "",
+      login: false,
+    };
+  }
 
-  const handleClick = () => {
-    try {
-      login({ id, password });
-    } catch (e) {
-      alert("Failed to login");
-      setId("");
-      setPassword("");
+  _selectUserData = async (e) => {
+    const res = await axios("/send/pw", {
+      method: "POST",
+      data: this.state,
+      headers: new Headers(),
+    });
+
+    if (res.data) {
+      console.log(res.data.msg);
+
+      if (res.data.suc) {
+        sessionStorage.setItem("login", true);
+        this.setState({ login: true });
+        // 메인으로 이동
+        this.props.history.push("/?login=true");
+      }
     }
   };
 
-  const { from } = location.state || { from: { pathname: "/" } };
-  if (authenticated) return <Redirect to={from} />;
+  _changeID = function () {
+    const id_v = document.getElementsByName("id")[0].value;
+    // state 의 id 와 헷갈릴 수 있어 변수명을 변경했습니다.
 
-  return (
-    <div className="container">
-      <div className="box">
-        <h1 className="logHeader">Login.</h1>
-        <input
-          className="logInput"
-          placeholder="UserID"
-          value={id}
-          onChange={({ target: { value } }) => setId(value)}
-        />
-        <input
-          className="logInput"
-          placeholder="Password"
-          value={password}
-          onChange={({ target: { value } }) => setPassword(value)}
-        />
-        <input
-          type="button"
-          className="logBtn"
-          value="로그인"
-          onClick={handleClick}
-        />
+    this.setState({
+      id: id_v,
+    });
+  };
+
+  _changePW = function () {
+    const pw_v = document.getElementsByName("password")[0].value;
+
+    this.setState({
+      password: pw_v,
+    });
+  };
+
+  render() {
+    return (
+      <div className="container">
+        <div className="box">
+          <h1 className="logHeader">Login.</h1>
+          <input
+            type="text"
+            className="logInput"
+            placeholder="UserID"
+            name="id"
+            onChange={() => this._changeID()}
+          />
+          <input
+            type="text"
+            className="logInput"
+            placeholder="Password"
+            name="password"
+            onChange={() => this._changePW()}
+          />
+          <input
+            type="button"
+            className="logBtn"
+            value="로그인"
+            onClick={() => this._selectUserData()}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
-
-// 하단 백업
-// const Login = () => {
-//   return (
-//     <div className="container">
-//       <div className="box">
-//         <h1 className="logHeader">Login.</h1>
-//         <input className="logInput" placeholder="UserID"></input>
-//         <input className="logInput" placeholder="Password"></input>
-//         <input
-//           type="submit"
-//           className="logBtn"
-//           value="로그인"
-//           onClick={() => alert("alert Test")}
-//         ></input>
-//       </div>
-//     </div>
-//   );
-// };
 
 export default Login;

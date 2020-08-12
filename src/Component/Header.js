@@ -5,70 +5,156 @@ import Home from "../Main/index";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Profile from "../Profile";
+import Users from "../users/Users";
 import "../css/header.css";
 import { signIn } from "../Auth/auth";
 import AuthRoute from "../Auth/AuthRoute";
 import LogoutButton from "../Login/LogoutButton";
 import axios from "axios";
+import Modal from "react-awesome-modal";
+import queryString from "query-string";
 
-function Header() {
+//응빈 Write - Test용 파일 import
+import Testprofile from "../Test/testProfile";
+//--------------------------------------------
+
+//여기까지 응빈 씀
+
+class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false,
+    };
+  }
+
+  // Set Modal status
+  _openModal = function () {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  _closeModal = function () {
+    this.setState({
+      visible: false,
+    });
+  };
+
+  _selectUserData = async (e) => {
+    const res = await axios("/send/pw", {
+      method: "POST",
+      data: this.state,
+      headers: new Headers(),
+    });
+
+    if (res.data) {
+      console.log(res.data);
+    }
+  };
+
   // 민재 Writing
   // const [user, setUser] => 사용자가 로그인 Form에서 입력한 정보 저장
 
-  const [user, setUser] = useState(null);
-  const authenticated = user != null;
+  // const [user, setUser] = useState(null);
+  // const authenticated = user != null;
 
-  const login = ({ id, password }) => setUser(signIn({ id, password }));
-  const logout = () => setUser(null);
+  // const login = ({ id, password }) => setUser(signIn({ id, password }));
+  // const logout = () => setUser(null);
 
   // 여기까지 민재 씀
 
-  return (
-    <Router>
-      <div className="con">
-        <header className="header">
-          <Link to="/">
-            <button className="headerName">Basket</button>
-          </Link>
-          {/* 로그인 / 로그아웃 */}
-          {authenticated ? (
-            <LogoutButton logout={logout} />
-          ) : (
-            <>
+  // 응빈 Writing
+  // Test용 state선언부
+
+  // const [testUser, setTestUser] = useState({
+  //   id: "testID",
+  //   name: "tester",
+  // });
+
+  render() {
+    const { params } = this.props.match;
+    return (
+      <Router>
+        <div className="con">
+          <header className="header">
+            <Link to="/">
+              <button className="headerName">Basket</button>
+            </Link>
+            <Link to="/users">
+              <button className="headerLogin">회원 정보</button>
+            </Link>
+            {/* 로그인 / 로그아웃 */}
+            {/* {authenticated ? (
+              <LogoutButton logout={logout} />
+            ) : ( */}
+            {this.state.login ? (
               <Link to="/login">
-                <button className="headerLogin">로그인</button>
+                <button
+                  className="headerLogin"
+                  onClick={() => this._selectUserData()}
+                >
+                  로그인
+                </button>
               </Link>
-              <Link to="/register">
-                <button className="headerRegister">회원가입</button>
-              </Link>
-            </>
-          )}
-          {/* Import profile */}
-          <Link to="/profile">
-            <button className="headerRegister">프로필</button>
-          </Link>
-        </header>
-      </div>
-      <main>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route
-            path="/login"
-            render={(props) => (
-              <Login authenticated={authenticated} login={login} {...props} />
+            ) : (
+              <>
+                <Link to="/login">
+                  <button
+                    className="headerLogin"
+                    onClick={() => this._selectUserData()}
+                  >
+                    로그인
+                  </button>
+                </Link>
+                <Link to="/register">
+                  <button className="headerRegister">회원가입</button>
+                </Link>
+              </>
             )}
-          />
-          <Route path="/register" component={Register} />
-          {/* Profile Import */}
-          <AuthRoute
-            authenticated={authenticated}
-            path="/profile"
-            render={(props) => <Profile user={user} {...props} />}
-          />
-        </Switch>
-      </main>
-    </Router>
-  );
+
+            {/* )} */}
+            {/* Import profile */}
+            {/* <Link to="/profile">
+            <button className="headerRegister">프로필</button>
+          </Link> */}
+            {/* 응빈 Write [Test용] */}
+            {/* <Link to="/Testprofile">
+            <button className="headerRegister">테스트프로필</button>
+          </Link> */}
+            {/* 여기까지 */}
+          </header>
+        </div>
+        <main>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
+            {/* <Route
+              path="/login"
+              render={(props) => (
+                <Login authenticated={authenticated} login={login} {...props} />
+              )}
+            /> */}
+            <Route path="/register" component={Register} />
+            {/* Profile Import */}
+            {/* <AuthRoute
+              authenticated={authenticated}
+              path="/profile"
+              render={(props) => <Profile user={user} {...props} />}
+            /> */}
+
+            {/* 응빈 Write 테스트 */}
+            {/* <Route
+              path="/Testprofile"
+              render={() => <Testprofile testuser={testUser} />}
+            /> */}
+            {/* 여기까지 */}
+            <Route path="/Users" render={() => <Users />} />
+          </Switch>
+        </main>
+      </Router>
+    );
+  }
 }
 
 export default Header;

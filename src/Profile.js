@@ -5,7 +5,7 @@ function Profile({ user }) {
   return (
     <>
       <h1>Profile</h1>
-      <dt>Email</dt>
+      <dt>id</dt>
       <dd>{id}</dd>
       <dt>Password</dt>
       <dd>{password}</dd>
