@@ -27,11 +27,17 @@ class Login extends Component {
     if (res.data) {
       console.log(res.data.msg);
 
+      // 로그인 성공
       if (res.data.suc) {
         sessionStorage.setItem("login", true);
         this.setState({ login: true });
         // 메인으로 이동
-        this.props.history.push("/?login=true");
+        // window.location.assign("/?login=" + this.state.login);
+        this.props.history.push({
+          pathname: "/index",
+          search: "?login=true",
+          state: { login: true },
+        });
       }
     }
   };

@@ -25,6 +25,7 @@ class Header extends Component {
     super(props);
     this.state = {
       visible: false,
+      login: true,
     };
   }
 
@@ -53,27 +54,7 @@ class Header extends Component {
     }
   };
 
-  // 민재 Writing
-  // const [user, setUser] => 사용자가 로그인 Form에서 입력한 정보 저장
-
-  // const [user, setUser] = useState(null);
-  // const authenticated = user != null;
-
-  // const login = ({ id, password }) => setUser(signIn({ id, password }));
-  // const logout = () => setUser(null);
-
-  // 여기까지 민재 씀
-
-  // 응빈 Writing
-  // Test용 state선언부
-
-  // const [testUser, setTestUser] = useState({
-  //   id: "testID",
-  //   name: "tester",
-  // });
-
   render() {
-    const { params } = this.props.match;
     return (
       <Router>
         <div className="con">
@@ -127,7 +108,9 @@ class Header extends Component {
         </div>
         <main>
           <Switch>
+            {/* <Route exact path="" component={Home} /> */}
             <Route exact path="/" component={Home} />
+            <Route exact path="/index" component={Home} />
             <Route path="/login" component={Login} />
             {/* <Route
               path="/login"
