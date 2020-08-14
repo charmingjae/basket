@@ -15,9 +15,9 @@ const Index = () => {
         </h1>
         <h1 className="indexCntUmb">남은 우산 개수</h1>
         <h1 className="indexUmbEtc">59</h1>
-        <Link to="/login">
-          <button className="indexlogBtn">우산 쓰고 가기</button>
-        </Link>
+        {/* <Link to="/login"> */}
+        <button className="indexlogBtn">우산 쓰고 가기</button>
+        {/* </Link> */}
       </div>
     </div>
   );
