@@ -15,9 +15,9 @@ class App extends Component {
     super(props);
     this.state = {
       page: "Main",
-      id: "",
-      pw: "",
-      login: false,
+      id: localStorage.getItem("id"),
+      pw: localStorage.getItem("pw"),
+      login: localStorage.getItem("loginStat"),
     };
   }
 
@@ -28,6 +28,13 @@ class App extends Component {
       page: header,
       login: login,
     });
+
+    console.log("localStorage's id Value is");
+    console.log(localStorage.getItem("id"));
+    console.log("localStorage's pw Value is");
+    console.log(localStorage.getItem("pw"));
+    console.log("localStorage's loginStat Value is");
+    console.log(localStorage.getItem("loginStat"));
   };
 
   onLoginSubmit = async (id, pw, login) => {
@@ -42,6 +49,9 @@ class App extends Component {
     console.log(this.state.id);
     console.log(this.state.pw);
     console.log(this.state.login);
+    localStorage.setItem("id", this.state.id);
+    localStorage.setItem("pw", this.state.pw);
+    localStorage.setItem("loginStat", this.state.login);
   };
 
   render() {
@@ -53,6 +63,8 @@ class App extends Component {
     //     </h3>
     //   </div>
     // );
+
+    // localStorage.setItem();
     return (
       <>
         <div className="Header">

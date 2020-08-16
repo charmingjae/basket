@@ -1,21 +1,21 @@
 // import React from "react";
 import React, { useState, Component } from "react"; //잠시바꾼거
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import Home from "../Main/index";
-import Login from "../Login/Login";
-import Register from "../Register/Register";
-import Profile from "../Profile";
-import Users from "../users/Users";
+// import Home from "../Main/index";
+// import Login from "../Login/Login";
+// import Register from "../Register/Register";
+// import Profile from "../Profile";
+// import Users from "../users/Users";
 import "../css/header.css";
-import { signIn } from "../Auth/auth";
-import AuthRoute from "../Auth/AuthRoute";
-import LogoutButton from "../Login/LogoutButton";
-import axios from "axios";
-import Modal from "react-awesome-modal";
-import queryString from "query-string";
+// import { signIn } from "../Auth/auth";
+// import AuthRoute from "../Auth/AuthRoute";
+// import LogoutButton from "../Login/LogoutButton";
+// import axios from "axios";
+// import Modal from "react-awesome-modal";
+// import queryString from "query-string";
 
 //응빈 Write - Test용 파일 import
-import Testprofile from "../Test/testProfile";
+// import Testprofile from "../Test/testProfile";
 //--------------------------------------------
 
 //여기까지 응빈 씀
@@ -26,7 +26,7 @@ class Header extends Component {
     this.state = {
       // visible: false, 바꾸기전
       selected: "Main", //added
-      login: true,
+      login: this.props.login,
     };
   }
 
@@ -54,6 +54,22 @@ class Header extends Component {
   //     console.log(res.data);
   //   }
   // };
+
+  componentWillMount = () => {
+    console.log("Header.js Component Will Mount!!!");
+    console.log(this.props.login);
+    console.log(this.state.login);
+  };
+
+  componentDidMount = () => {
+    console.log("Header.js Component Did Mount!!!");
+    console.log(this.props.login);
+    console.log(this.state.login);
+  };
+
+  componentDidUpdate = () => {
+    console.log("Header.js Component Did Update!!!");
+  };
 
   selectMain = async () => {
     await this.setState({
