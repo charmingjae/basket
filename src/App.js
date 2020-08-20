@@ -4,22 +4,23 @@ import Main from "./Main/index";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import User from "./users/Users";
-import axios from "axios";
-
-// function App() {
-//   return <Header />;
-// }
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       page: "Main",
-      id: localStorage.getItem("id"),
-      pw: localStorage.getItem("pw"),
-      login: localStorage.getItem("loginStat"),
+      id: "",
+      pw: "",
+      login: sessionStorage.loginStat,
     };
   }
+
+  _componentWillMount = () => {
+    this.setState({
+      login: sessionStorage.loginStat,
+    });
+  };
 
   onHeaderSubmit = async (header, login) => {
     // console.log(header);
@@ -29,12 +30,12 @@ class App extends Component {
       login: login,
     });
 
-    console.log("localStorage's id Value is");
-    console.log(localStorage.getItem("id"));
-    console.log("localStorage's pw Value is");
-    console.log(localStorage.getItem("pw"));
-    console.log("localStorage's loginStat Value is");
-    console.log(localStorage.getItem("loginStat"));
+    console.log("sessionStorage's id Value is");
+    console.log(sessionStorage.getItem("id"));
+    console.log("sessionStorage's pw Value is");
+    console.log(sessionStorage.getItem("pw"));
+    console.log("sessionStorage's loginStat Value is");
+    console.log(sessionStorage.getItem("loginStat"));
   };
 
   onLoginSubmit = async (id, pw, login) => {
@@ -45,26 +46,11 @@ class App extends Component {
       login: login,
     });
 
-    console.log("Login.js에서 넘어온 회원정보 결과");
-    console.log(this.state.id);
-    console.log(this.state.pw);
+    console.log("onLoginSubmit");
     console.log(this.state.login);
-    localStorage.setItem("id", this.state.id);
-    localStorage.setItem("pw", this.state.pw);
-    localStorage.setItem("loginStat", this.state.login);
   };
 
   render() {
-    // return (
-    //   <div className="App">
-    //     <h3>
-    //       {" "}
-    //       Welcome to <u> {this.state.host} </u> Blog!{" "}
-    //     </h3>
-    //   </div>
-    // );
-
-    // localStorage.setItem();
     return (
       <>
         <div className="Header">

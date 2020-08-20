@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-import Header from "../Component/Header";
-import Register from "../Register/Register";
-import Home from "../Main/index";
 import "../css/login.css";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
-import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
@@ -18,30 +13,28 @@ class Login extends Component {
   }
 
   _selectUserData = async (e) => {
-    const res = await axios("/send/pw", {
+    // Post to server
+    // 총 두 가지 값을 전송
+    // id, pw
+    const res = await axios("http://localhost:4000/send/pw", {
       method: "POST",
       data: this.state,
       headers: new Headers(),
     });
 
-    this.props.onSubmit(this.state.id, this.state.password, true); //added
+    if (res.data) {
+      console.log(res.data.msg);
 
-    // if (res.data) {
-    //   console.log(res.data.msg);
+      if (res.data.suc) {
+        sessionStorage.setItem("loginStat", true);
+        sessionStorage.setItem("id", this.state.id);
+        sessionStorage.setItem("pw", this.state.password);
+        this.props.onSubmit(this.state.id, this.state.password, true);
+      }
+    }
 
-    //   // 로그인 성공
-    //   if (res.data.suc) {
-    //     sessionStorage.setItem("login", true);
-    //     this.setState({ login: true });
-    //     // 메인으로 이동
-    //     // window.location.assign("/?login=" + this.state.login);
-    //     this.props.history.push({
-    //       pathname: "/index",
-    //       search: "?login=true",
-    //       state: { login: true },
-    //     });
-    //   }
-    // }
+    // Reload Header Component
+    window.location.reload(true);
   };
 
   _changeID = function () {
