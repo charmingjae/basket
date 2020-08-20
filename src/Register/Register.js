@@ -18,9 +18,13 @@ class Register extends Component {
     const { userid } = this.state;
     e.preventDefault();
 
-    const res = await axios("/add/data", {
+    const res = await axios("http://localhost:4000/add/data", {
       method: "POST",
-      data: { dataUserId: userid, dataPassword: password, dataName: name },
+      data: {
+        dataUserId: userid,
+        dataPassword: password,
+        dataName: name,
+      },
       headers: new Headers(),
     });
 

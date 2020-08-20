@@ -67,7 +67,7 @@ class Login extends Component {
             onChange={() => this._changeID()}
           />
           <input
-            type="text"
+            type="password"
             className="logInput"
             placeholder="Password"
             name="password"
