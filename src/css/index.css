@@ -63,13 +63,13 @@
     font-size: 20px;
     font-weight: 500;
     border-radius: 5px 5px 5px 5px;
-    box-shadow: 2px 2px 2px;
+    box-shadow: 2px 2px 2px black;
 }
 
 
 .indexlogBtn:hover{
-    background: #f0ffff;
-    color: black;
+    background: #00008b;
+    color: white;
 }
 
 .indexbox > svg{

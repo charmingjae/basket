@@ -62,14 +62,14 @@ class Login extends Component {
           <input
             type="text"
             className="logInput"
-            placeholder="UserID"
+            placeholder="아이디"
             name="id"
             onChange={() => this._changeID()}
           />
           <input
             type="password"
             className="logInput"
-            placeholder="Password"
+            placeholder="비밀번호"
             name="password"
             onChange={() => this._changePW()}
           />

@@ -28,8 +28,12 @@ class Register extends Component {
       headers: new Headers(),
     });
 
-    if (res.data) {
-      alert("회원가입 완료.");
+    // Server.js에서 res.send(false) 여부를 통해 출력되는 값 표시
+    if (!res.data) {
+      alert("이미 가입된 아이디가 있습니다..");
+      return window.location.reload();
+    } else {
+      alert("회원가입 완료!");
       return window.location.reload();
     }
   };
@@ -53,18 +57,19 @@ class Register extends Component {
           <h1 className="regHeader">Register.</h1>
           <form method="POST" onSubmit={this._addData}>
             <input
+              name="id"
               className="regInput"
-              placeholder="UserID"
+              placeholder="아이디"
               onChange={(e) => this._idUpdate(e)}
             ></input>
             <input
               className="regInput"
-              placeholder="Password"
+              placeholder="비밀번호"
               onChange={(e) => this._passwordUpdate(e)}
             ></input>
             <input
               className="regInput"
-              placeholder="UserName"
+              placeholder="이름"
               onChange={(e) => this._nameUpdate(e)}
             ></input>
             <input type="submit" className="regBtn" value="회원가입"></input>
