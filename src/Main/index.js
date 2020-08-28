@@ -9,11 +9,19 @@ class Index extends Component {
     super(props);
     this.state = {
       umbEtc: [],
+      loginChk: "",
+      name: sessionStorage.getItem("id"),
     };
   }
 
   componentDidMount() {
+    console.log("Get Session : ", sessionStorage.getItem("id"));
+    console.log("Get Login Status : ", sessionStorage.getItem("loginStat"));
     this._getUmbEtc();
+  }
+
+  componentDidUpdate() {
+    console.log("Update login status : ", sessionStorage.getItem("loginStat"));
   }
 
   _getUmbEtc = async () => {
@@ -28,9 +36,35 @@ class Index extends Component {
     this.setState({ umbEtc: res.data });
   };
 
+  // 우산 빌리러 가기 버튼 이벤트 함수
+  borrowUmb = async () => {
+    console.log(sessionStorage.getItem("loginStat"));
+    if (sessionStorage.getItem("loginStat") === "true") {
+      const res = await axios("http://localhost:4000/add/borrow", {
+        method: "POST",
+        data: this.state,
+        headers: new Headers(),
+      });
+
+      console.log("반환 여부 : ", res.data);
+      if (!res.data) {
+        alert("현재 대여중 입니다.");
+      } else {
+        alert("대여 완료!");
+        return (window.location.href = "/");
+      }
+    } else {
+      // 지렸고
+      alert("로그인이 필요합니다!");
+      await this.setState({
+        loginChk: "Login",
+      });
+      this.props.onSubmit(this.state.loginChk);
+    }
+  };
+
   render() {
     const { umbEtc } = this.state;
-    //찜닭 ㅈㄴ설레네
     return (
       <div className="indexcontainer">
         <div className="indexbox">
@@ -50,7 +84,9 @@ class Index extends Component {
               })
             : null}
           {/* <Link to="/login"> */}
-          <button className="indexlogBtn">우산 쓰고 가기</button>
+          <button className="indexlogBtn" onClick={() => this.borrowUmb()}>
+            우산 쓰고 가기
+          </button>
           {/* </Link> */}
         </div>
       </div>

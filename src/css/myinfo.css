@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
+.indexcontainer{
+    height: 100vh;
+    background: #2f5fd2;
+}
+
+.indexbox{
+    position:absolute;
+    top:50%;
+    left: 50%;
+    width:900px;
+    height: 700px;
+    background: none;
+    outline: none;
+    border: none;
+    /* border: 1px solid #153038; */
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 5px;
+}
+
+.indexHeader{
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 70px;
+    margin-top:30px;
+    color: white;
+}
+
+.notBorrowDate{
+    
+    padding-top: 0;
+    margin-top: 80px;
+    font-family: 'Spoqa Han Sans', serif;
+    font-size: 25px;
+    font-weight:300;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.contBorrowDate{
+    margin: 0;
+    font-family: 'Spoqa Han Sans', serif;
+    font-size: 90px;
+    color: white;
+}
+
+.notReturnDate{
+    font-family: 'Spoqa Han Sans', serif;
+    font-size: 25px;
+    font-weight:300;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.contReturndate{
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 50px;
+    font-family: 'Spoqa Han Sans', serif;
+    font-size: 90px;
+    color: white;
+}
+
+
+.updateUmbEtc{
+    font-family: 'Spoqa Han Sans', serif;
+    margin-top: 10px;
+    width: 20%;
+    height: 7%;
+    background :#ffffff;
+    outline: none;
+    border: none;
+    transition: background 0.5s;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 2px 2px 2px black;
+}
+
+
+.updateUmbEtc:hover{
+    background: #00008b;
+    color: white;
+}
+
+.notBorrow{
+    margin-top: 200px;
+    margin-bottom: 200px;
+    font-family: 'Spoqa Han Sans', serif;
+    font-size: 60px;
+    font-weight:500;
+    color: white;
+}

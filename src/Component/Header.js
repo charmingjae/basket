@@ -12,19 +12,19 @@ class Header extends Component {
   }
 
   componentWillMount = () => {
-    console.log("Header.js Component Will Mount!!!");
-    console.log(this.props.login);
-    console.log(this.state.login);
+    // console.log("Header.js Component Will Mount!!!");
+    // console.log(this.props.login);
+    // console.log(this.state.login);
   };
 
   componentWillUpdate = () => {
-    console.log("Header.js Component Will Update!!!");
-    console.log(this.state.login);
+    // console.log("Header.js Component Will Update!!!");
+    // console.log(this.state.login);
   };
 
   componentDidUpdate = () => {
-    console.log("Header.js Component Did Update!!!");
-    console.log(this.state.login);
+    // console.log("Header.js Component Did Update!!!");
+    // console.log(this.state.login);
   };
 
   selectMain = async () => {
@@ -55,6 +55,13 @@ class Header extends Component {
     this.props.onSubmit(this.state.selected, this.props.login);
   };
 
+  selectLab = async () => {
+    await this.setState({
+      selected: "Lab",
+    });
+    this.props.onSubmit(this.state.selected, this.props.login);
+  };
+
   selectLogout = () => {
     sessionStorage.setItem("loginStat", false);
     sessionStorage.setItem("id", null);
@@ -64,6 +71,13 @@ class Header extends Component {
     window.location.reload(true);
   };
 
+  selectMyInfo = async () => {
+    await this.setState({
+      selected: "MyInfo",
+    });
+    this.props.onSubmit(this.state.selected, this.props.login);
+  };
+
   render() {
     if (this.state.login === "true") {
       return (
@@ -71,6 +85,14 @@ class Header extends Component {
           <header className="header">
             <button className="headerName" onClick={() => this.selectMain()}>
               Basket
+            </button>
+
+            <button className="headerLogin" onClick={() => this.selectLab()}>
+              실험실
+            </button>
+
+            <button className="headerLogin" onClick={() => this.selectMyInfo()}>
+              내 정보
             </button>
 
             <button className="headerLogin" onClick={() => this.selectUser()}>

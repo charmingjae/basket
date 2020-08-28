@@ -4,6 +4,9 @@ import Main from "./Main/index";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import User from "./users/Users";
+import Lab from "./Lab/Lab";
+import Setumb from "./pgSetUmb/SetUmb";
+import Myinfo from "./MyInfo/MyInfo";
 
 class App extends Component {
   constructor(props) {
@@ -50,6 +53,24 @@ class App extends Component {
     console.log(this.state.login);
   };
 
+  onLabSubmit = async (header) => {
+    await this.setState({
+      page: header,
+    });
+  };
+
+  onSetUmbSubmit = async (header) => {
+    await this.setState({
+      page: header,
+    });
+  };
+
+  chkLogin = async (header) => {
+    await this.setState({
+      page: header,
+    });
+  };
+
   render() {
     return (
       <>
@@ -58,12 +79,17 @@ class App extends Component {
         </div>
 
         <div className="Body">
-          {this.state.page === "Main" && <Main />}
+          {this.state.page === "Main" && <Main onSubmit={this.chkLogin} />}
           {this.state.page === "Login" && (
             <Login onSubmit={this.onLoginSubmit} />
           )}
           {this.state.page === "Register" && <Register />}
           {this.state.page === "User" && <User />}
+          {this.state.page === "Lab" && <Lab onSubmit={this.onLabSubmit} />}
+          {this.state.page === "Setumb" && (
+            <Setumb onSubmit={this.onSetUmbSubmit} />
+          )}
+          {this.state.page === "MyInfo" && <Myinfo />}
         </div>
       </>
     );
