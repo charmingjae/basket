@@ -8,6 +8,7 @@ import Lab from "./Lab/Lab";
 import Setumb from "./pgSetUmb/SetUmb";
 import Myinfo from "./MyInfo/MyInfo";
 import Borrowlist from "./BorrowList/Borrowlist";
+import Overduelist from "./Overdue/Overdue";
 
 class App extends Component {
   constructor(props) {
@@ -92,6 +93,7 @@ class App extends Component {
           )}
           {this.state.page === "MyInfo" && <Myinfo />}
           {this.state.page === "Borrowlist" && <Borrowlist />}
+          {this.state.page === "Overduelist" && <Overduelist />}
         </div>
       </>
     );

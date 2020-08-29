@@ -25,9 +25,14 @@
     font-family: 'Nanum Myeongjo', serif;
     font-size: 100px;
     margin:0;
+    margin-bottom: 20px;
     color: white;
 }
-
+.buttonDiv{
+    background: none;
+    width: 900px;
+    text-align:right;
+}
 .indexContent{
     font-family: 'Spoqa Han Sans', serif;
     font-size: 25px;
@@ -51,23 +56,25 @@
 }
 
 
-.updateUmbEtc{
+.doReturnUmb{
     font-family: 'Spoqa Han Sans', serif;
     margin-top: 10px;
-    width: 20%;
-    height: 7%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 10%;
+    height: 5%;
     background :#ffffff;
     outline: none;
     border: none;
     transition: background 0.5s;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 500;
     border-radius: 5px 5px 5px 5px;
-    box-shadow: 2px 2px 2px black;
+    box-shadow: 1px 1px 1px black;
 }
 
 
-.updateUmbEtc:hover{
+.doReturnUmb:hover{
     background: #00008b;
     color: white;
 }
@@ -94,24 +101,25 @@
     color: white;
 }
 
-.showOverdueList{
-    font-family: 'Spoqa Han Sans', serif;
-    margin-top: 10px;
-    margin-left: 10px;
-    width: 20%;
-    height: 7%;
-    background :#ffffff;
-    outline: none;
-    border: none;
-    transition: background 0.5s;
-    font-size: 20px;
-    font-weight: 500;
-    border-radius: 5px 5px 5px 5px;
-    box-shadow: 2px 2px 2px black;
+/* Table css */
+
+.borTable{
+    margin-top: 100px;
+    border:1px solid white;
+    color: white;
+    margin:auto;
+}
+th{
+    border:1px solid white;
+    width: 200px;
+    height: 50px;
 }
 
+tr, td{
+    border: 1px solid white;
+    height: 40px;
+}
 
-.showOverdueList:hover{
-    background: #00008b;
-    color: white;
+.thChkbox{
+    width: 50px;
 }

@@ -48,7 +48,15 @@ class Index extends Component {
 
       console.log("반환 여부 : ", res.data);
       if (!res.data) {
-        alert("현재 대여중 입니다.");
+        if (
+          window.confirm("현재 대여중 입니다. 대여 정보를 확인하시겠습니까?")
+        ) {
+          await this.setState({
+            loginChk: "MyInfo",
+          });
+          this.props.onSubmit(this.state.loginChk);
+        } else {
+        }
       } else {
         alert("대여 완료!");
         return (window.location.href = "/");

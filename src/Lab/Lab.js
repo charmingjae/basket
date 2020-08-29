@@ -21,6 +21,11 @@ class Lab extends Component {
     this.props.onSubmit(page);
   };
 
+  openOverdueList = async () => {
+    const page = "Overduelist";
+    this.props.onSubmit(page);
+  };
+
   render() {
     return (
       <div className="indexcontainer">
@@ -35,6 +40,12 @@ class Lab extends Component {
             onClick={() => this.openBorrowList()}
           >
             대여자 명단
+          </button>
+          <button
+            className="showOverdueList"
+            onClick={() => this.openOverdueList()}
+          >
+            연체자 명단
           </button>
         </div>
       </div>

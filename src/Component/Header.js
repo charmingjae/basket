@@ -95,9 +95,9 @@ class Header extends Component {
               내 정보
             </button>
 
-            <button className="headerLogin" onClick={() => this.selectUser()}>
+            {/* <button className="headerLogin" onClick={() => this.selectUser()}>
               회원정보
-            </button>
+            </button> */}
 
             <button className="headerLogin" onClick={() => this.selectLogout()}>
               로그아웃

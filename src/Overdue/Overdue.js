@@ -1,74 +1,40 @@
 // import React from "react";
 import React, { Component } from "react";
-import "../css/Borrowlist.css";
+import "../css/Overduelist.css";
 import axios from "axios";
 
-class Borrowlist extends Component {
+class Overduelist extends Component {
   constructor(props) {
     super(props);
     this.state = {
       page: "",
-      brList: [], //대여자 명단 State
+      odList: [],
       sendArr: [],
     };
     console.log("this.page : ", this.state.page);
   }
 
   componentDidMount = () => {
-    this.getBorrowList();
+    this.getOverdueList();
   };
 
   //대여자 명단 가져오는 함수 : getBorrowList
-  getBorrowList = async () => {
-    const res = await axios("http://localhost:4000/get/borrowlist", {
+  getOverdueList = async () => {
+    const res = await axios("http://localhost:4000/get/overduelist", {
       method: "GET",
       headers: new Headers(),
     });
 
     this.setState({
-      brList: res.data,
+      odList: res.data,
     });
 
-    console.log("brList");
-    console.log(this.state.brList);
+    console.log("odList");
+    console.log(this.state.odList);
   };
 
   //책 반납 함수 : returnBook
   returnBook = async () => {
-    var checkboxes = document.getElementsByName("element");
-    var checkedArr = [];
-    for (var i in checkboxes) {
-      if (checkboxes[i].checked === true) {
-        checkedArr.push(parseInt(checkboxes[i].value));
-      }
-    }
-    await this.setState({
-      sendArr: [...checkedArr],
-    });
-
-    console.log("CheckedArr : ", checkedArr);
-    console.log("SendArr: ", this.state.sendArr);
-
-    if (this.state.sendArr.length === 0) {
-      alert("선택 된 명단이 없습니다.");
-    } else {
-      const res = await axios("http://localhost:4000/post/returnbook", {
-        method: "POST",
-        data: this.state.sendArr,
-        headers: new Headers(),
-      });
-
-      if (res.data) {
-        alert("삭제 성공");
-        this.getBorrowList();
-      }
-
-      console.log(this.state.sendArr);
-    }
-  };
-
-  // 연체 처리 함수 : overdueBook
-  overdueBook = async () => {
     var checkboxes = document.getElementsByName("element");
     var checkedArr = [];
     for (var i in checkboxes) {
@@ -122,17 +88,14 @@ class Borrowlist extends Component {
   }
 
   render() {
-    const { brList } = this.state;
+    const { odList } = this.state;
     return (
       <div className="indexcontainer">
         <div className="indexbox">
-          <h1 className="indexHeader">대여자</h1>
+          <h1 className="indexHeader">연체자</h1>
           <div className="buttonDiv">
-            <button className="doReturnUmb" onClick={this.overdueBook}>
-              연체
-            </button>
             <button className="doReturnUmb" onClick={this.returnBook}>
-              반납
+              종료
             </button>
           </div>
 
@@ -141,16 +104,16 @@ class Borrowlist extends Component {
               <tr>
                 <th>번호</th>
                 <th>이름</th>
-                <th>대여 날짜</th>
-                <th>반납 날짜</th>
+                <th>연체 날짜</th>
+                <th>종료 날짜</th>
                 <th className="thChkbox">
                   <input type="checkbox" onChange={this.checkAllbox}></input>
                 </th>
               </tr>
             </thead>
             <tbody>
-              {brList.length !== 0 ? (
-                brList.map((el, key) => {
+              {odList.length !== 0 ? (
+                odList.map((el, key) => {
                   return (
                     <tr key={key}>
                       <td>{el.id}</td>
@@ -169,7 +132,7 @@ class Borrowlist extends Component {
                 })
               ) : (
                 <tr>
-                  <td colspan="5">대여자가 없습니다.</td>
+                  <td colspan="5">연체자가 없습니다.</td>
                 </tr>
               )}
             </tbody>
@@ -180,4 +143,4 @@ class Borrowlist extends Component {
   }
 }
 
-export default Borrowlist;
+export default Overduelist;
