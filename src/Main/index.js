@@ -71,7 +71,7 @@ class Index extends Component {
           <WiRaindrops />
           <h1 className="indexHeader">Basket.</h1>
           <h1 className="indexContent">
-            비가 오는 날, 우산이 필요한 사람들을 위한 학생 서비스.
+            비가 오는 날, 우산이 필요한 사람들을 위한 대여 서비스.
           </h1>
           <h1 className="indexCntUmb">남은 우산 개수</h1>
           {umbEtc.length !== 0

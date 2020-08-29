@@ -7,6 +7,7 @@ import User from "./users/Users";
 import Lab from "./Lab/Lab";
 import Setumb from "./pgSetUmb/SetUmb";
 import Myinfo from "./MyInfo/MyInfo";
+import Borrowlist from "./BorrowList/Borrowlist";
 
 class App extends Component {
   constructor(props) {
@@ -90,6 +91,7 @@ class App extends Component {
             <Setumb onSubmit={this.onSetUmbSubmit} />
           )}
           {this.state.page === "MyInfo" && <Myinfo />}
+          {this.state.page === "Borrowlist" && <Borrowlist />}
         </div>
       </>
     );
