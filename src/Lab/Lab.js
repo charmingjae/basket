@@ -26,6 +26,11 @@ class Lab extends Component {
     this.props.onSubmit(page);
   };
 
+  openReturnList = async () => {
+    const page = "Returnlist";
+    this.props.onSubmit(page);
+  };
+
   render() {
     return (
       <div className="indexcontainer">
@@ -41,6 +46,12 @@ class Lab extends Component {
           >
             대여자 명단
           </button>
+          {/* <button
+            className="showBorrowList"
+            onClick={() => this.openReturnList()}
+          >
+            반납자 명단
+          </button> */}
           <button
             className="showOverdueList"
             onClick={() => this.openOverdueList()}

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import "../css/Overduelist.css";
 import axios from "axios";
 
-class Overduelist extends Component {
+class Returnlist extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +18,7 @@ class Overduelist extends Component {
     this.getOverdueList();
   };
 
-  //연체자 명단 가져오는 함수 : getBorrowList
+  //반납자 명단 가져오는 함수 : getBorrowList
   getOverdueList = async () => {
     const res = await axios("http://localhost:4000/get/overduelist", {
       method: "GET",
@@ -33,8 +33,8 @@ class Overduelist extends Component {
     console.log(this.state.odList);
   };
 
-  //연체 종료  : finoverdue
-  finoverdue = async () => {
+  //책 반납 함수 : returnBook
+  returnBook = async () => {
     var checkboxes = document.getElementsByName("element");
     var checkedArr = [];
     for (var i in checkboxes) {
@@ -52,7 +52,7 @@ class Overduelist extends Component {
     if (this.state.sendArr.length === 0) {
       alert("선택 된 명단이 없습니다.");
     } else {
-      const res = await axios("http://localhost:4000/post/finoverdue", {
+      const res = await axios("http://localhost:4000/post/returnbook", {
         method: "POST",
         data: this.state.sendArr,
         headers: new Headers(),
@@ -60,12 +60,7 @@ class Overduelist extends Component {
 
       if (res.data) {
         alert("삭제 성공");
-        for (var i in checkboxes) {
-          if (checkboxes[i].checked === true) {
-            checkboxes[i].checked = false;
-          }
-        }
-        this.getOverdueList();
+        this.getBorrowList();
       }
 
       console.log(this.state.sendArr);
@@ -97,9 +92,9 @@ class Overduelist extends Component {
     return (
       <div className="indexcontainer">
         <div className="indexbox">
-          <h1 className="indexHeader">연체자</h1>
+          <h1 className="indexHeader">반납자</h1>
           <div className="buttonDiv">
-            <button className="doReturnUmb" onClick={this.finoverdue}>
+            <button className="doReturnUmb" onClick={this.returnBook}>
               종료
             </button>
           </div>
@@ -109,8 +104,8 @@ class Overduelist extends Component {
               <tr>
                 <th>번호</th>
                 <th>이름</th>
-                <th>연체 날짜</th>
-                <th>종료 날짜</th>
+                <th>기존 반납 날짜</th>
+                <th>실제 반납 날짜</th>
                 <th className="thChkbox">
                   <input type="checkbox" onChange={this.checkAllbox}></input>
                 </th>
@@ -123,8 +118,8 @@ class Overduelist extends Component {
                     <tr key={key}>
                       <td>{el.id}</td>
                       <td>{el.name}</td>
-                      <td>{el.ovDate.substring(5, 10)}</td>
-                      <td>{el.finDate.substring(5, 10)}</td>
+                      <td>{el.brDate.substring(5, 10)}</td>
+                      <td>{el.rtDate.substring(5, 10)}</td>
                       <td>
                         <input
                           type="checkbox"
@@ -137,7 +132,7 @@ class Overduelist extends Component {
                 })
               ) : (
                 <tr>
-                  <td colSpan="5">연체자가 없습니다.</td>
+                  <td colSpan="5">반납자가 없습니다.</td>
                 </tr>
               )}
             </tbody>
@@ -148,4 +143,4 @@ class Overduelist extends Component {
   }
 }
 
-export default Overduelist;
+export default Returnlist;

@@ -44,15 +44,16 @@ class SetUmb extends Component {
       <div className="setUmbcontainer">
         <div className="setUmbbox">
           <h1 className="setUmbHeader">SETUMB</h1>
-          <button className="updateUmbEtc" onClick={() => this.openLab()}>
+          {/* <button className="updateUmbEtc" onClick={() => this.openLab()}>
             실험실로
-          </button>
+          </button> */}
         </div>
         <div className="setUmbInput">
           <input
             type="number"
             className="UmbInput"
             id="setUmbInput"
+            placeholder="?"
             onChange={(e) => this.umbEtcValue(e)}
           ></input>
           <button className="subUmbCnt" onClick={() => this.updateUmb()}>
