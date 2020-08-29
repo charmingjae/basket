@@ -80,31 +80,60 @@ class Header extends Component {
 
   render() {
     if (this.state.login === "true") {
-      return (
-        <div className="con">
-          <header className="header">
-            <button className="headerName" onClick={() => this.selectMain()}>
-              Basket
-            </button>
-
-            <button className="headerLogin" onClick={() => this.selectLab()}>
-              실험실
-            </button>
-
-            <button className="headerLogin" onClick={() => this.selectMyInfo()}>
-              내 정보
-            </button>
-
-            {/* <button className="headerLogin" onClick={() => this.selectUser()}>
-              회원정보
-            </button> */}
-
-            <button className="headerLogin" onClick={() => this.selectLogout()}>
-              로그아웃
-            </button>
-          </header>
-        </div>
-      );
+      if (sessionStorage.getItem("id") === "admin") {
+        return (
+          <div className="con">
+            <header className="header">
+              <button className="headerName" onClick={() => this.selectMain()}>
+                Basket
+              </button>
+              <button className="headerLogin" onClick={() => this.selectLab()}>
+                실험실
+              </button>
+              <button
+                className="headerLogin"
+                onClick={() => this.selectMyInfo()}
+              >
+                내 정보
+              </button>
+              {/* <button className="headerLogin" onClick={() => this.selectUser()}>
+                회원정보
+              </button> */}
+              <button
+                className="headerLogin"
+                onClick={() => this.selectLogout()}
+              >
+                로그아웃
+              </button>
+            </header>
+          </div>
+        );
+      } else {
+        return (
+          <div className="con">
+            <header className="header">
+              <button className="headerName" onClick={() => this.selectMain()}>
+                Basket
+              </button>
+              <button
+                className="headerLogin"
+                onClick={() => this.selectMyInfo()}
+              >
+                내 정보
+              </button>
+              {/* <button className="headerLogin" onClick={() => this.selectUser()}>
+                회원정보
+              </button> */}
+              <button
+                className="headerLogin"
+                onClick={() => this.selectLogout()}
+              >
+                로그아웃
+              </button>
+            </header>
+          </div>
+        );
+      }
     } else {
       // 로그인 페이지 진입 시 헤더에 '로그인' 없애기
       if (this.state.selected === "Login") {

@@ -47,12 +47,22 @@ class Index extends Component {
       });
 
       console.log("반환 여부 : ", res.data);
-      if (!res.data) {
+      if (res.data === "Borrowed") {
         if (
           window.confirm("현재 대여중 입니다. 대여 정보를 확인하시겠습니까?")
         ) {
           await this.setState({
             loginChk: "MyInfo",
+          });
+          this.props.onSubmit(this.state.loginChk);
+        } else {
+        }
+      } else if (res.data === "Overdued") {
+        if (
+          window.confirm("현재 연체중 입니다. 연체 정보를 확인하시겠습니까?")
+        ) {
+          await this.setState({
+            loginChk: "Myoverdue",
           });
           this.props.onSubmit(this.state.loginChk);
         } else {

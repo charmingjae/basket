@@ -10,6 +10,7 @@ import Myinfo from "./MyInfo/MyInfo";
 import Borrowlist from "./BorrowList/Borrowlist";
 import Overduelist from "./Overdue/Overdue";
 import Returnlist from "./Return/Return";
+import Myoverdue from "./MyInfo/Myoverdue";
 
 class App extends Component {
   constructor(props) {
@@ -74,6 +75,12 @@ class App extends Component {
     });
   };
 
+  onMyinfoSubmit = async (header) => {
+    await this.setState({
+      page: header,
+    });
+  };
+
   render() {
     return (
       <>
@@ -92,10 +99,13 @@ class App extends Component {
           {this.state.page === "Setumb" && (
             <Setumb onSubmit={this.onSetUmbSubmit} />
           )}
-          {this.state.page === "MyInfo" && <Myinfo />}
+          {this.state.page === "MyInfo" && (
+            <Myinfo onSubmit={this.onMyinfoSubmit} />
+          )}
           {this.state.page === "Borrowlist" && <Borrowlist />}
           {this.state.page === "Overduelist" && <Overduelist />}
           {this.state.page === "Returnlist" && <Returnlist />}
+          {this.state.page === "Myoverdue" && <Myoverdue />}
         </div>
       </>
     );

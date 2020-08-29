@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import "../css/myinfo.css";
 import axios from "axios";
 
-class MyInfo extends Component {
+class Myoverdue extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +21,7 @@ class MyInfo extends Component {
 
   getMyinfo = async () => {
     console.log("myInfos post name : ", this.state.name);
-    const res = await axios("http://localhost:4000/get/myinfo", {
+    const res = await axios("http://localhost:4000/get/myoverdue", {
       method: "POST",
       data: this.state,
       headers: new Headers(),
@@ -35,12 +35,6 @@ class MyInfo extends Component {
       this.setState({ dateInfo: res.data });
     }
   };
-
-  goMain = async () => {
-    const page = "Main";
-    this.props.onSubmit(page);
-  };
-
   //dateInfo[0].brDate   setState 둘다 xxxxx대여안함
   render() {
     // 날짜 정보 가져오기
@@ -50,25 +44,20 @@ class MyInfo extends Component {
     return (
       <div className="indexcontainer">
         <div className="indexbox">
-          <h1 className="indexHeader">내 정보</h1>
+          <h1 className="indexHeader">내 연체 정보</h1>
           {dateInfo.length !== 0 ? (
             <>
-              <h1 className="notBorrowDate">대여 날짜</h1>
+              <h1 className="notBorrowDate">연체 시작 날짜</h1>
               <h1 className="contBorrowDate">
-                {dateInfo[0].brDate.substring(5, 10)}
+                {dateInfo[0].ovDate.substring(5, 10)}
               </h1>
-              <h1 className="notReturnDate">반납 일자</h1>
+              <h1 className="notReturnDate">연체 종료 일자</h1>
               <h1 className="contReturndate">
-                {dateInfo[0].rtDate.substring(5, 10)}
+                {dateInfo[0].finDate.substring(5, 10)}
               </h1>
             </>
           ) : (
-            <>
-              <h1 className="notBorrow">우산을 대여하지 않았습니다!</h1>
-              <button className="updateUmbEtc" onClick={() => this.goMain()}>
-                우산 빌리기
-              </button>
-            </>
+            <h1 className="notBorrow">우산을 대여하지 않았습니다!</h1>
           )}
         </div>
       </div>
@@ -76,4 +65,4 @@ class MyInfo extends Component {
   }
 }
 
-export default MyInfo;
+export default Myoverdue;
