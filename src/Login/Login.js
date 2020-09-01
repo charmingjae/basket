@@ -22,6 +22,9 @@ class Login extends Component {
       headers: new Headers(),
     });
 
+    console.log("로그인.js");
+    console.log(res);
+
     if (res.data) {
       console.log(res.data.msg);
 
@@ -30,11 +33,12 @@ class Login extends Component {
         sessionStorage.setItem("id", this.state.id);
         sessionStorage.setItem("pw", this.state.password);
         this.props.onSubmit(this.state.id, this.state.password, true);
+        // Reload Header Component
+        window.location.reload(true);
+      } else {
+        alert("로그인 정보를 확인하세요.");
       }
     }
-
-    // Reload Header Component
-    window.location.reload(true);
   };
 
   _changeID = function () {

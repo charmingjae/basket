@@ -53,5 +53,60 @@ header {
     float:right;
 }
 
+.headerMyInfo{
+    font-family: 'Spoqa Han Sans', serif;
+    font-size: 15px;
+    font-weight:bold;
+    background: #2f5fd2;
+    color: #3B3B46;
+    border: 0;
+    outline: 0;
+    color: white;
+    float:right;
+}
+
+.headerMyInfo:hover .sub-menu{
+    opacity:1;
+    visibility: visible;
+}
+
 /* 버거 메뉴  */
 
+.headerToLab{
+    font-family: 'Spoqa Han Sans', serif;
+    font-size: 15px;
+    font-weight:bold;
+    background: #2f5fd2;
+    color: #3B3B46;
+    border: 0;
+    outline: 0;
+    color: white;
+    float:right;
+    list-style-type: none;
+    margin: none;
+}
+
+.headerToLab:hover .sub-menu{
+    opacity:1;
+    visibility: visible;
+}
+
+.sub-menu{
+    margin: 0;
+    padding: 0;
+    list-style-type:none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sub-menu > li{
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
+    background-color: black;
+    text-align:center;
+}
+.sub-menu{
+    padding-top: 10px;
+}
