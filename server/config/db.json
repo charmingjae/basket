@@ -1,0 +1,12 @@
+{
+    "development" : {
+        "username": "basket",
+        "password": "Jumpman23!",
+        "database": "basket",
+        "host": "13.209.103.253",
+        "port": 3306,
+        "dialect": "mysql",
+        "timezone" : "+09:00"
+    },
+    "salt" : "hellowassup"
+}
