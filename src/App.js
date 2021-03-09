@@ -30,8 +30,6 @@ class App extends Component {
   };
 
   onHeaderSubmit = async (header, login) => {
-    // console.log(header);
-    // console.log(this.state.page);
     await this.setState({
       page: header,
       login: login,

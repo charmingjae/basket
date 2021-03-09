@@ -10,12 +10,30 @@ class Borrowlist extends Component {
       page: "",
       brList: [], //대여자 명단 State
       sendArr: [], //실제반납날짜
+      umbEtc: 0,
     };
     console.log("this.page : ", this.state.page);
   }
 
   componentDidMount = () => {
+    this._getUmbEtc();
     this.getBorrowList();
+    console.log(this.state.umbEtc);
+  };
+
+  _getUmbEtc = async () => {
+    const res = await axios.get("http://localhost:4000/get/etc");
+
+    console.log("res Data : ", res.data[0].etc);
+
+    if (res.data[0] === undefined) {
+      let getErrEtc = [];
+      getErrEtc.push(res.data);
+
+      return this.setState({ umbEtc: getErrEtc });
+    }
+    this.setState({ umbEtc: res.data[0].etc });
+    console.log(this.state.umbEtc);
   };
 
   //대여자 명단 가져오는 함수 : getBorrowList
@@ -48,16 +66,34 @@ class Borrowlist extends Component {
 
     console.log("CheckedArr : ", checkedArr);
     console.log("SendArr: ", this.state.sendArr);
+    console.log("test : ", this.state.umbEtc);
 
     if (this.state.sendArr.length === 0) {
       alert("선택 된 명단이 없습니다.");
     } else {
+      console.log("will send array : ", this.state.sendArr);
       const res = await axios("http://localhost:4000/post/returnbook", {
         method: "POST",
-        data: this.state.sendArr,
+        // data: this.state.sendArr,
+        // umbEtc: this.state.umbEtc,
+        data: {
+          test: this.state.sendArr,
+          umbEtc: this.state.umbEtc + 1,
+        },
         headers: new Headers(),
+        error: function (request, status, error) {
+          console.log(
+            "code:" +
+              request.status +
+              "\n message:" +
+              request.responseText +
+              "\n error:" +
+              error
+          );
+        },
       });
 
+      console.log("resData : ", res.data);
       if (res.data) {
         alert("삭제 성공");
         // 체크박스 초기화
